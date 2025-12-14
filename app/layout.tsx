@@ -25,11 +25,11 @@ export const metadata: Metadata = {
     title: "To'y marosimiga qo'shiling!",
     description:
       "Assalomu alaykum, sizni to'y marosimimizga taklif qilamiz. Bizning baxtli kunimizda ishtirok eting va unutilmas lahzalarning guvohi bo'ling. Ravshanbek va Madinaxon nikoh to'yi 2025-yil 21-dekabr kuni bo'lib o'tadi.",
-    url: "/wedding.avif",
+    url: "https://image2url.com/images/1765703679559-bcf1da35-f9dd-4180-a65a-c711bb46d631.avif",
     siteName: "Wedding Invitation",
     images: [
       {
-        url: "/wedding.avif",
+        url: "https://image2url.com/images/1765703679559-bcf1da35-f9dd-4180-a65a-c711bb46d631.avif",
         width: 1200,
         height: 630,
         alt: "Wedding Invitation Open Graph Image",
