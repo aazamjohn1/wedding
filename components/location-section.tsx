@@ -17,12 +17,12 @@ export default function LocationSection({ weddingInfo }: LocationSectionProps) {
 
   const openInMaps = () => {
     const address = encodeURIComponent(`${weddingInfo.venue}, ${weddingInfo.address}`)
-    const mapsUrl = `https://maps.app.goo.gl/5p5fAMoP76yL2cHW7`
+    const mapsUrl = `https://yandex.com/maps/org/137312223024?si=8rrhkurfevka3dexmmm1b289cw`
     window.open(mapsUrl, "_blank")
   }
 
   const getDirections = () => {
-    const directionsUrl = `https://maps.app.goo.gl/5p5fAMoP76yL2cHW7`
+    const directionsUrl = `https://yandex.com/maps/org/137312223024?si=8rrhkurfevka3dexmmm1b289cw`
     window.open(directionsUrl, "_blank")
   }
 
@@ -80,7 +80,6 @@ export default function LocationSection({ weddingInfo }: LocationSectionProps) {
                   <div className="ml-9 space-y-2">
                     <p className="text-gray-400">Bepul avtoturargoh mavjud</p>
                     <p className="text-gray-400 ">Taksi: Yandex Go</p>
-                    <p className="text-gray-400">Damas: Dilkushod, Manak</p>
                   </div>
                 </div>
 
@@ -90,7 +89,7 @@ export default function LocationSection({ weddingInfo }: LocationSectionProps) {
                     <h4 className="font-semibold text-gray-500 text-lg">Aloqa</h4>
                   </div>
                   <div className="ml-9 space-y-2">
-                    <p className="text-gray-400">+998 91 001 22 17</p>
+                    <p className="text-gray-400">+998 94 970 77 09</p>
                     <p className="text-gray-400">Savollar va yo'l ko'rsatish uchun</p>
                   </div>
                 </div>
