@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: {
-    icon: "/wedding.avif",
+    icon: "https://image2url.com/images/1765703679559-bcf1da35-f9dd-4180-a65a-c711bb46d631.avif",
   },
 }
 
