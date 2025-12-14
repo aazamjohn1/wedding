@@ -1,11 +1,11 @@
 "use client"
 
-import { useState } from "react"
 import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Share2, Copy, Check, User, Sparkles } from "lucide-react"
+import { Check, Copy, Share2, Sparkles, User } from "lucide-react"
+import { useState } from "react"
 
 interface ShareModalProps {
   isOpen: boolean
@@ -23,8 +23,8 @@ export default function ShareModal({ isOpen, onClose }: ShareModalProps) {
     if (navigator.share && guestName) {
       try {
         await navigator.share({
-          title: `${guestName} - Asadbek va Hilola to'yi taklifnomasi`,
-          text: `Assalomu alaykum ${guestName}! Sizni Asadbek va Hilola nikoh to'yiga taklif qilamiz!`,
+          title: `${guestName} - Ravshanbek va Madinaxon to'yi taklifnomasi`,
+          text: `Assalomu alaykum ${guestName}! Sizni Ravshanbek va Madinaxon nikoh to'yiga taklif qilamiz!`,
           url: personalizedUrl,
         })
       } catch (error) {

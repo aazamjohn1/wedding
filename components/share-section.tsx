@@ -1,8 +1,8 @@
 "use client"
 
-import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Share2, Copy, Check, Users } from "lucide-react"
+import { Check, Copy, Share2, Users } from "lucide-react"
+import { useState } from "react"
 
 export default function ShareSection() {
   const [copied, setCopied] = useState(false)
@@ -13,7 +13,7 @@ export default function ShareSection() {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: "To'y taklifnomasi - Asadbek va Hilola",
+          title: "To'y taklifnomasi - Ravshanbek va Madinaxon",
           text: "Bizning to'y marosimimizga taklif qilamiz!",
           url: shareUrl,
         })

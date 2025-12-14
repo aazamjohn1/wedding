@@ -1,12 +1,12 @@
 "use client"
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
+import AnimatedBackground from "@/components/animated-background"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Share2, Copy, Check, User, Sparkles, ArrowLeft, MessageCircle, Facebook, Twitter } from "lucide-react"
-import AnimatedBackground from "@/components/animated-background"
+import { ArrowLeft, Check, Copy, Facebook, MessageCircle, Share2, Sparkles, Twitter, User } from "lucide-react"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
 
 export default function SharePage() {
   const router = useRouter()
@@ -20,8 +20,8 @@ export default function SharePage() {
     if (navigator.share && guestName) {
       try {
         await navigator.share({
-          title: `${guestName} - Asadbek va Hilola to'yi taklifnomasi`,
-          text: `Assalomu alaykum ${guestName}! Sizni Asadbek va Hilola nikoh to'yiga taklif qilamiz!`,
+          title: `${guestName} - Ravshanbek va Madinaxon to'yi taklifnomasi`,
+          text: `Assalomu alaykum ${guestName}! Sizni Ravshanbek va Madinaxon nikoh to'yiga taklif qilamiz!`,
           url: personalizedUrl,
         })
       } catch (error) {
@@ -46,7 +46,7 @@ export default function SharePage() {
     if (!guestName) return
 
     const text = encodeURIComponent(
-      `Assalomu alaykum ${guestName}! Sizni Asadbek va Hilola nikoh to'yiga taklif qilamiz!`,
+      `Assalomu alaykum ${guestName}! Sizni Ravshanbek va Madinaxon nikoh to'yiga taklif qilamiz!`,
     )
     const url = encodeURIComponent(personalizedUrl)
 
@@ -171,7 +171,7 @@ export default function SharePage() {
                     <p className="text-center text-gray-600 mb-4 font-semibold font-cormorant">
                       Share directly on social media
                     </p>
-                    <div className="grid grid-cols-3 gap-3">
+                    <div className="grid md:grid-cols-3 grid-cols-2 gap-3">
                       <Button
                         onClick={() => shareToSocial("whatsapp")}
                         className="bg-green-500 hover:bg-green-600 text-white py-6 rounded-xl shadow-lg"
