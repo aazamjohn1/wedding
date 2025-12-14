@@ -25,22 +25,23 @@ export const metadata: Metadata = {
     title: "To'y marosimiga qo'shiling!",
     description:
       "Assalomu alaykum, sizni to'y marosimimizga taklif qilamiz. Bizning baxtli kunimizda ishtirok eting va unutilmas lahzalarning guvohi bo'ling. Ravshanbek va Madinaxon nikoh to'yi 2025-yil 21-dekabr kuni bo'lib o'tadi.",
-    url: "https://image2url.com/images/1765703679559-bcf1da35-f9dd-4180-a65a-c711bb46d631.avif",
-    siteName: "Wedding Invitation",
+  url: 'https://i.ibb.co/fVBj7hJy/360-F-515351836-w-W5-ECB6l-Z3r7ek-EJ6-H2-Tfv-CFEkhgwid9-1.jpg',
+    siteName: 'Wedding Invitation',
     images: [
       {
-        url: "https://image2url.com/images/1765703679559-bcf1da35-f9dd-4180-a65a-c711bb46d631.avif",
+   
+        url: 'https://i.ibb.co/fVBj7hJy/360-F-515351836-w-W5-ECB6l-Z3r7ek-EJ6-H2-Tfv-CFEkhgwid9-1.jpg',
         width: 1200,
         height: 630,
-        alt: "Wedding Invitation Open Graph Image",
+        alt: 'Wedding Invitation Open Graph Image',
       },
     ],
-    locale: "en_US",
-    type: "website",
+    locale: 'en_US',
+    type: 'website',
   },
   icons: {
-    icon: "https://image2url.com/images/1765703679559-bcf1da35-f9dd-4180-a65a-c711bb46d631.avif",
-  },
+    icon: 'https://i.ibb.co/fVBj7hJy/360-F-515351836-w-W5-ECB6l-Z3r7ek-EJ6-H2-Tfv-CFEkhgwid9-1.jpg',
+  }
 }
 
 export default function RootLayout({
