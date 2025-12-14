@@ -65,21 +65,6 @@ export default function PersonalizedHeader({ weddingInfo, guestName }: Personali
             <h1 className="text-5xl md:text-6xl font-playfair font-bold romantic-glow-text">{weddingInfo.brideName}</h1>
           </div>
 
-          {/* Personalized greeting */}
-          {guestName && (
-            <div className="romantic-card rounded-2xl p-6 animate-in fade-in slide-in-from-bottom-4">
-              <p className="text-lg md:text-xl font-cormorant text-gray-700">
-                Dear{" "}
-                <span className="font-playfair font-bold romantic-glow-text text-2xl">
-                  {decodeURIComponent(guestName)}
-                </span>
-                ,
-              </p>
-              <p className="text-sm md:text-base text-gray-600 mt-2 font-cormorant">
-                We would be honored by your presence at our wedding celebration
-              </p>
-            </div>
-          )}
 
           <div className="romantic-card rounded-2xl p-6 md:p-8 space-y-6">
             <h2 className="text-2xl md:text-3xl font-playfair font-bold text-gray-700 mb-6">Wedding Details</h2>
