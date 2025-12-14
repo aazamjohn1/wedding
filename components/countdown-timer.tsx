@@ -59,7 +59,7 @@ export default function CountdownTimer({ weddingDate, onComplete }: CountdownTim
 
   if (timeLeft.isComplete) {
     return (
-      <div className="bg-gradient-to-br from-emerald-50 to-sage-50 rounded-2xl p-12 shadow-lg border border-emerald-200 text-center">
+      <div className="bg-gradient-to-br from-emerald-50 to-sage-50 rounded-2xl p-12 shadow-lg border border-emerald-200 text-center mb-6">
         <div className="flex items-center justify-center gap-3 mb-4">
           <Heart className="w-12 h-12 text-emerald-600 fill-emerald-600 animate-pulse" />
           <h2 className="text-5xl font-bold text-emerald-700">To'y Boshlandi!</h2>
@@ -71,7 +71,7 @@ export default function CountdownTimer({ weddingDate, onComplete }: CountdownTim
   }
 
   return (
-    <div className="bg-gradient-to-br from-white to-emerald-50/30 rounded-3xl p-10 shadow-xl border border-emerald-100">
+    <div className="bg-gradient-to-br from-white to-emerald-50/30 rounded-3xl p-10 shadow-xl border border-emerald-100 mb-6">
       <div className="text-center mb-8">
         <h2 className="text-4xl font-bold text-sage-800 mb-2">To'ygacha qoldi</h2>
         <div className="w-24 h-1 bg-gradient-to-r from-emerald-400 to-sage-500 rounded-full mx-auto"></div>
