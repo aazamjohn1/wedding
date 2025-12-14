@@ -39,7 +39,7 @@ export default function PersonalizedHeader({ weddingInfo, guestName }: Personali
 
       <div className="romantic-glass-effect rounded-3xl p-8 md:p-12 max-w-2xl w-full text-center shadow-2xl relative z-10">
         {/* Bismillah */}
-        <div className="mb-8">
+        <div className="mb-8 mt-12">
           <p className="text-2xl md:text-3xl font-playfair font-bold text-emerald-600 mb-2">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</p>
           <p className="text-sm text-gray-500 font-cormorant">Bismillahir Rohmanir Rohiym</p>
         </div>
