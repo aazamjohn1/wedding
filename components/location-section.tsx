@@ -137,14 +137,14 @@ export default function LocationSection({ weddingInfo }: LocationSectionProps) {
                   </div>
                 </div>
               )}
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1381.338144269265!2d72.6534769505116!3d40.59676681691484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bc55007bd609d7%3A0xe9bcb02c0e756c32!2sMuhammadyahyo!5e0!3m2!1sen!2s!4v1752749767658!5m2!1sen!2s"  width="100%"
-                height="100%"
+            <div style={{position: "relative", overflow: "hidden"}}><a href="https://yandex.uz/maps/org/137312223024/?utm_medium=mapframe&utm_source=maps" style={{color:"#eee", fontSize:"12px", position:"absolute",top:"0px"}}>Brendhall</a><a href="https://yandex.uz/maps/10335/tashkent/category/restaurant/184106394/?utm_medium=mapframe&utm_source=maps" style={{color:"#eee", fontSize:"12px", position:"absolute", top:"14px"}}>Restoran  Toshkentda</a><iframe src="https://yandex.uz/map-widget/v1/org/137312223024/?ll=69.310315%2C41.379257&z=15" height="400"
+                width="100%"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 onLoad={() => setMapLoaded(true)}
-                className="rounded-b-3xl"></iframe>
+                className="rounded-b-3xl"></iframe></div>
             </div>
           </CardContent>
         </Card>
