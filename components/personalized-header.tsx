@@ -145,7 +145,7 @@ export default function PersonalizedHeader({ weddingInfo, guestName }: Personali
 
     <p className="text-center mt-6">
       <span className="romantic-glow-text font-playfair font-bold text-xl md:text-2xl">
-        Alloh ularni qalbini sevgi ila birlashtirdi! 💝
+        Alloh ularni qalbini sevgi ila birlashtirdi! ❤️
       </span>
     </p>
   </div>
