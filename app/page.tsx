@@ -1,8 +1,7 @@
-"use client"
-
+"use client";
 import AnimatedBackground from "@/components/animated-background";
 import CelebrationAnimation from "@/components/celebration-animation";
-import CountdownTimer from "@/components/countdown-timer"; // Declare the CountdownTimer variable here
+import CountdownTimer from "@/components/countdown-timer";
 import LocationSection from "@/components/location-section";
 import Navigation from "@/components/navigation";
 import PersonalizedHeader from "@/components/personalized-header";
@@ -11,53 +10,61 @@ import WishesSection from "@/components/wishes-section";
 import type { User, WeddingInfo } from "@/lib/types";
 import { LogIn, Share2, Volume2, VolumeX } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-
+import { useEffect, useRef, useState } from "react";
 
 export default function HomePage() {
-  const router = useRouter()
-  const [user, setUser] = useState<User | null>(null)
-  const [weddingInfo, setWeddingInfo] = useState<WeddingInfo | null>(null)
-  const [activeSection, setActiveSection] = useState("home")
-  const [showShare, setShowShare] = useState(false)
-  const [guestName, setGuestName] = useState<string>("")
-  const [audio, setAudio] = useState<HTMLAudioElement | null>(null)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [showCelebration, setShowCelebration] = useState(false)
+  const router = useRouter();
+  const [user, setUser] = useState<User | null>(null);
+  const [weddingInfo, setWeddingInfo] = useState<WeddingInfo | null>(null);
+  const [activeSection, setActiveSection] = useState("home");
+  const [guestName, setGuestName] = useState<string>("");
+  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [showCelebration, setShowCelebration] = useState(false);
+
+  // Create a ref to hold the audio instance
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search)
-    const userParam = urlParams.get("user")
-    const guest = urlParams.get("guest")
+    const urlParams = new URLSearchParams(window.location.search);
+    const userParam = urlParams.get("user");
+    const guest = urlParams.get("guest");
 
     if (userParam) {
       try {
-        const googleUser = JSON.parse(userParam)
-        setUser(googleUser)
-        localStorage.setItem("wedding-user", JSON.stringify(googleUser))
-        window.history.replaceState({}, document.title, window.location.pathname)
+        const googleUser = JSON.parse(userParam);
+        setUser(googleUser);
+        localStorage.setItem("wedding-user", JSON.stringify(googleUser));
+        window.history.replaceState({}, document.title, window.location.pathname);
       } catch (error) {
-        console.error("Failed to parse user from URL:", error)
+        console.error("Failed to parse user from URL:", error);
       }
     }
 
     if (guest) {
-      setGuestName(guest)
+      setGuestName(guest);
     }
 
-    const storedUser = localStorage.getItem("wedding-user")
+    const storedUser = localStorage.getItem("wedding-user");
     if (storedUser && !userParam) {
-      setUser(JSON.parse(storedUser))
+      setUser(JSON.parse(storedUser));
     }
 
-    fetchWeddingInfo()
-    fetchWeddingMedia()
-  }, [])
+    fetchWeddingInfo();
+    fetchWeddingMedia();
+
+    // Cleanup function to stop audio on unmount
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+    };
+  }, []);
 
   const fetchWeddingInfo = async () => {
     try {
-      const response = await fetch("/api/wedding-info")
-      const data = await response.json()
+      const response = await fetch("/api/wedding-info");
+      const data = await response.json();
 
       if (!data.weddingInfo) {
         const defaultInfo = {
@@ -68,76 +75,80 @@ export default function HomePage() {
           address: "Tashkent, Yunusabad District, Gathering of citizens of Bobodehkan Mahallah",
           time: "16:00",
           description: "Bizning nikoh to'yimizda ishtirok etishingizni chin dildan xoxlaymiz.",
-        }
+        };
 
         await fetch("/api/wedding-info", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(defaultInfo),
-        })
+        });
 
-        setWeddingInfo(defaultInfo)
+        setWeddingInfo(defaultInfo);
       } else {
-        setWeddingInfo(data.weddingInfo)
+        setWeddingInfo(data.weddingInfo);
       }
     } catch (error) {
-      console.error("To'y ma'lumotlari yuklanmadi:", error)
+      console.error("To'y ma'lumotlari yuklanmadi:", error);
     }
-  }
+  };
 
   const fetchWeddingMedia = async () => {
     try {
-      const response = await fetch("/api/wedding-info/media")
-      const data = await response.json()
+      const response = await fetch("/api/wedding-info/media");
+      const data = await response.json();
 
-      const edSheeranPerfectUrl = "/assets/bg-sound.mp3"
+      const edSheeranPerfectUrl = "/assets/bg-sound.mp3";
+      const audioUrl = data.audioUrl || edSheeranPerfectUrl;
 
-      const audioUrl = data.audioUrl || edSheeranPerfectUrl
+      // Initialize audio only if it doesn't exist
+      if (!audioRef.current) {
+        const newAudio = new Audio(audioUrl);
+        newAudio.loop = true;
+        newAudio.volume = 0.3;
+        audioRef.current = newAudio; // Store the audio reference
 
-      if (audioUrl) {
-        const audioElement = new Audio(audioUrl)
-        audioElement.loop = true
-        audioElement.volume = 0.3
-        setAudio(audioElement)
-
-        audioElement
-          .play()
-          .then(() => setIsPlaying(true))
-          .catch((error) => {
-            console.log("Audio autoplay prevented:", error)
-          })
-      }
-
-      if (data.primaryColor) {
-        document.documentElement.style.setProperty("--wedding-primary", data.primaryColor)
-      }
-      if (data.secondaryColor) {
-        document.documentElement.style.setProperty("--wedding-secondary", data.secondaryColor)
+        // Play audio only if the user has already interacted with the page
+        if (isPlaying) {
+          newAudio.play().catch((error) => {
+            console.log("Audio autoplay prevented:", error);
+          });
+        }
+      } else {
+        // If audio is already initialized, update the source
+        audioRef.current.src = audioUrl;
+        if (isPlaying) {
+          audioRef.current.play().catch((error) => {
+            console.log("Audio autoplay prevented:", error);
+          });
+        }
       }
     } catch (error) {
-      console.error("Failed to fetch wedding media:", error)
+      console.error("Failed to fetch wedding media:", error);
     }
-  }
+  };
 
   const toggleAudio = () => {
-    if (audio) {
+    if (audioRef.current) {
       if (isPlaying) {
-        audio.pause()
-        setIsPlaying(false)
+        audioRef.current.pause();
+        setIsPlaying(false);
       } else {
-        audio.play()
-        setIsPlaying(true)
+        audioRef.current.play().then(() => {
+          setIsPlaying(true);
+        }).catch((error) => {
+          console.log("Audio autoplay prevented:", error);
+        });
       }
     }
-  }
+  };
 
   const handleCountdownComplete = () => {
-    setShowCelebration(true)
-  }
+    setShowCelebration(true);
+  };
 
   const handleLoginClick = () => {
-    router.push("/login")
-  }
+    router.push("/login");
+  };
 
   const renderActiveSection = () => {
     switch (activeSection) {
@@ -151,11 +162,11 @@ export default function HomePage() {
               </div>
             )}
           </div>
-        )
+        );
       case "wishes":
-        return <WishesSection user={user} onSignupRequired={handleLoginClick} />
+        return <WishesSection user={user} onSignupRequired={handleLoginClick} />;
       case "location":
-        return <LocationSection weddingInfo={weddingInfo} />
+        return <LocationSection weddingInfo={weddingInfo} />;
       default:
         return (
           <div className="space-y-8">
@@ -166,17 +177,15 @@ export default function HomePage() {
               </div>
             )}
           </div>
-        )
+        );
     }
-  }
+  };
 
   return (
     <div className="min-h-screen relative">
       <AnimatedBackground />
       <Navigation activeSection={activeSection} onSectionChange={setActiveSection} />
-
       {showCelebration && <CelebrationAnimation />}
-
       {/* Top Controls */}
       <div className="fixed top-6 left-6 z-50 flex gap-2">
         <Button
@@ -185,18 +194,14 @@ export default function HomePage() {
         >
           <Share2 className="w-5 h-5" />
         </Button>
-
-        {audio && (
-          <Button
-            onClick={toggleAudio}
-            className="romantic-nav-glass rounded-full p-3 shadow-2xl text-emerald-500 hover:bg-emerald-100 border-0"
-            variant="ghost"
-          >
-            {isPlaying ? <Volume2 className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
-          </Button>
-        )}
+        <Button
+          onClick={toggleAudio}
+          className="romantic-nav-glass rounded-full p-3 shadow-2xl text-emerald-500 hover:bg-emerald-100 border-0"
+          variant="ghost"
+        >
+          {isPlaying ? <Volume2 className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
+        </Button>
       </div>
-
       {!user && (
         <div className="fixed top-6 right-6 z-50">
           <Button
@@ -208,7 +213,6 @@ export default function HomePage() {
           </Button>
         </div>
       )}
-
       {/* User welcome badge */}
       {user && activeSection !== "home" && (
         <div className="fixed right-1 transform -translate-x-1/1 z-30 mr-3">
@@ -219,8 +223,7 @@ export default function HomePage() {
           </div>
         </div>
       )}
-
       <div className="relative z-10">{renderActiveSection()}</div>
     </div>
-  )
+  );
 }
