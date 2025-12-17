@@ -67,21 +67,20 @@ export default function PersonalizedHeader({ weddingInfo, guestName }: Personali
 
 
           <div className="romantic-card rounded-2xl p-6 md:p-8 space-y-6">
-            <h2 className="text-2xl md:text-3xl font-playfair font-bold text-gray-700 mb-6">Wedding Details</h2>
+            {/* <h2 className="text-2xl md:text-3xl font-playfair font-bold text-gray-700 mb-6">Wedding Details</h2> */}
 
             <div className="space-y-4">
               <div className="flex items-center gap-4 p-4 bg-emerald-50 rounded-xl border border-emerald-200 smooth-transition hover:shadow-md">
                 <Calendar className="w-6 h-6 md:w-7 md:h-7 text-emerald-500" />
                 <div className="text-left">
-                  <p className="font-semibold text-gray-700 font-cormorant text-sm">Date</p>
+                  <p className="font-semibold text-gray-700 font-cormorant text-sm">Sana</p>
                   <p className="text-gray-600 font-cormorant text-base md:text-lg">
                     {(() => {
                       const date = new Date(weddingInfo.weddingDate)
                       const year = date.getFullYear()
                       const month = String(date.getMonth() + 1).padStart(2, "0")
                       const day = String(date.getDate()).padStart(2, "0")
-                      const weekday = date.toLocaleDateString("en-US", { weekday: "short" })
-                      return `${year}-${month}-${day} ${weekday}`
+                      return `${year}-${month}-${day}`
                     })()}
                   </p>
                 </div>
@@ -90,7 +89,7 @@ export default function PersonalizedHeader({ weddingInfo, guestName }: Personali
               <div className="flex items-center gap-4 p-4 bg-emerald-50 rounded-xl border border-emerald-200 smooth-transition hover:shadow-md">
                 <Clock className="w-6 h-6 md:w-7 md:h-7 text-emerald-500" />
                 <div className="text-left">
-                  <p className="font-semibold text-gray-700 font-cormorant text-sm">Time</p>
+                  <p className="font-semibold text-gray-700 font-cormorant text-sm">Vaqti</p>
                   <p className="text-gray-600 font-cormorant text-lg md:text-xl font-medium">{weddingInfo.time}</p>
                 </div>
               </div>
@@ -98,9 +97,9 @@ export default function PersonalizedHeader({ weddingInfo, guestName }: Personali
               <div className="flex items-center gap-4 p-4 bg-emerald-50 rounded-xl border border-emerald-200 smooth-transition hover:shadow-md">
                 <MapPin className="w-6 h-6 md:w-7 md:h-7 text-emerald-500" />
                 <div className="text-left">
-                  <p className="font-semibold text-gray-700 font-cormorant text-sm">Venue</p>
+                  <p className="font-semibold text-gray-700 font-cormorant text-sm">Adress</p>
                   <p className="text-gray-600 font-cormorant text-base md:text-lg font-medium">{weddingInfo.venue}</p>
-                  <p className="text-sm text-gray-500 font-cormorant">{weddingInfo.address}</p>
+                  {/* <p className="text-sm text-gray-500 font-cormorant">{weddingInfo.address}</p> */}
                 </div>
               </div>
             </div>
@@ -108,37 +107,61 @@ export default function PersonalizedHeader({ weddingInfo, guestName }: Personali
 
           {/* Long invitation text */}
           <div className="romantic-card rounded-2xl p-6 md:p-8 text-left">
-            <div className="space-y-4 text-gray-600 leading-relaxed font-cormorant">
-              <p className="text-lg md:text-xl">
-                <span className="romantic-glow-text font-playfair font-bold text-xl md:text-2xl">
-                  Dear {guestName ? decodeURIComponent(guestName) : "Guest"}!
-                </span>
-              </p>
-              <p className="text-base md:text-lg">
-                We want to celebrate the most important and happy day of our lives with you. We sincerely ask you to
-                participate in our wedding ceremony and witness our first steps in a new life path.
-              </p>
-              <p className="text-base md:text-lg">
-                Your presence at this sacred ceremony will make our happiness even more complete. We look forward to
-                sharing these unforgettable moments with our family members and closest friends.
-              </p>
-              <p className="text-center mt-6">
-                <span className="romantic-glow-text font-playfair font-bold text-xl md:text-2xl">
-                  Your presence is our greatest gift! 💝
-                </span>
-              </p>
-            </div>
-          </div>
+  <div className="space-y-4 text-gray-600 leading-relaxed font-cormorant">
+    <p className="text-lg md:text-xl">
+      <span className="romantic-glow-text font-playfair font-bold text-xl md:text-2xl">
+        Hurmatli {guestName ? decodeURIComponent(guestName) : "mehmonimiz"}!
+      </span>
+    </p>
+
+    <p className="text-base md:text-lg">
+      Hayotimizdagi eng baxtli va unitilmas kun – nikoh to‘yimiz munosabati bilan bo‘lib o‘tadigan
+      tantanali kechamizning aziz mehmoni bo‘lishga taklif etamiz.
+    </p>
+
+    {/* === Block like in the image === */}
+    <div className="text-center space-y-2 my-4">
+      <p className="font-arabic text-xl md:text-2xl text-gray-800">
+        وَحُضُورُكُمْ يُدْخِلُ عَلَيْنَا الْفَرَحَ وَالسُّرُورَ
+      </p>
+      <p className="text-sm md:text-base text-gray-600">
+        Tashrifingiz bizga quvonch va surur bag‘ishlaydi.
+      </p>
+
+      <p className="font-arabic text-xl md:text-2xl text-gray-800 mt-4">
+        وَخَلَقْنَاكُمْ أَزْوَاجًا
+      </p>
+      <p className="text-sm md:text-base text-gray-600">
+         Va sizlarni juft qilib yaratdi.
+      </p>
+    </div>
+    {/* === end block === */}
+
+    <p className="text-base md:text-lg">
+      Ushbu muborak nikoh tantanasida Sizning ishtirokingiz quvonchimizga quvonch, 
+  baxtimizga baxt qo‘shadi. Bu go‘zal kunning lahzalarini Siz bilan birga 
+  baham ko‘rishni chin dildan istaymiz.
+    </p>
+
+    <p className="text-center mt-6">
+      <span className="romantic-glow-text font-playfair font-bold text-xl md:text-2xl">
+        Alloh ularni qalbini sevgi ila birlashtirdi! 💝
+      </span>
+    </p>
+  </div>
+</div>
+
 
           {/* Islamic blessing with green theme */}
-          <div className="bg-gradient-to-r from-emerald-100 to-amber-100 p-6 rounded-2xl border border-emerald-200 shadow-sm">
-            <p className="text-base md:text-lg text-emerald-700 font-semibold font-cormorant">
-              "May Allah unite you and bless you"
-            </p>
-            <p className="text-sm text-gray-500 mt-2 font-cormorant italic">
-              Alloh sizlarni birlashtirsin va sizlarga baraka bersin
-            </p>
-          </div>
+          <div className="bg-gradient-to-r from-emerald-100 to-amber-100 p-4 md:p-5 rounded-2xl border border-emerald-200 shadow-sm mt-2">
+              <p className="text-sm md:text-base text-emerald-800 font-semibold font-cormorant">
+                Alloh taolo bu nikohni sizlar uchun rahmat, qalblaringiz uchun sakinat, hayotingiz uchun
+                barokat qilsin.
+              </p>
+              <p className="text-xs md:text-sm text-gray-600 mt-2 font-cormorant italic">
+                Duolaringiz va ishtirokingiz biz uchun eng ulug‘ tuhfa.
+              </p>
+            </div>
         </div>
       </div>
     </div>
