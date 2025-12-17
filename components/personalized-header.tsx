@@ -129,7 +129,7 @@ export default function PersonalizedHeader({ weddingInfo, guestName }: Personali
       </p>
 
       <p className="font-arabic text-xl md:text-2xl text-gray-800 mt-4">
-        وَخَلَقْنَاكُمْ أَزْوَاجًا
+       (78:8) وَخَلَقْنَاكُمْ أَزْوَاجًا  
       </p>
       <p className="text-sm md:text-base text-gray-600">
          Va sizlarni juft qilib yaratdi.
@@ -145,7 +145,7 @@ export default function PersonalizedHeader({ weddingInfo, guestName }: Personali
 
     <p className="text-center mt-6">
       <span className="romantic-glow-text font-playfair font-bold text-xl md:text-2xl">
-        Alloh ularni qalbini sevgi ila birlashtirdi! ❤️
+        Alloh ularni qalbini sevgi ila birlashtirdi! (8:63)
       </span>
     </p>
   </div>
